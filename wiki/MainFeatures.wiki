@@ -4,5 +4,7 @@
   * Login
   * Cadastro de pacientes
   * Cadastro de Consulta com Anaminese, por Data e Paciente
+  * Agenda
+  * Busca de Agenda
   * Busca de Paciente
   * Busca de Consulta
