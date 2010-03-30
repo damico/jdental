@@ -1,0 +1,8 @@
+#summary List of application main features
+
+= Main Features =
+  * Login
+  * Cadastro de pacientes
+  * Cadastro de Consulta com Anaminese, por Data e Paciente
+  * Busca de Paciente
+  * Busca de Consulta
