@@ -37,7 +37,19 @@ public class ServletUtils {
 				".title { \n" +
 				"margin-right: 20px; \n" +
 				"display:inline-block; \n" +
-				"width: 50px; \n" +
+				"width: 80px; \n" +
+				"}\n" +
+				".error { \n" +
+				"margin-right: 20px; \n" +
+				"display:inline-block; \n" +
+				"width: 350px; \n" +
+				"background: red; \n" +
+				"}\n" +
+				".success { \n" +
+				"margin-right: 20px; \n" +
+				"display:inline-block; \n" +
+				"width: 350px; \n" +
+				"background: green; \n" +
 				"}\n" +
 				".botao {\n" +
 				"background-color: #EFEFEF;\n" +

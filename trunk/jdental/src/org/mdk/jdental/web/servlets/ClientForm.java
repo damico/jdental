@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mdk.jdental.exceptions.TopLevelException;
 import org.mdk.jdental.utils.Constants;
 import org.mdk.jdental.web.ClientFormImpl;
 import org.mdk.jdental.web.FormGenerator;
@@ -34,28 +35,26 @@ public class ClientForm extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SecurityException {
 		
+		PrintWriter out = response.getWriter();
+		out.println(ServletUtils.getInstance().getHTMLHeader(Constants.APP_NAME));
+		out.println(ServletUtils.getInstance().getUserMenu(request));
+		
+		
+		out.println("<br><br>");
+		
 			try {
 				FormValidator fv = new FormValidator(request);
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-		
+				
+				if(fv.getError()){
+					out.println(fv.getErrorMsg());
+				}else{
+					out.println(fv.getSuccessMsg());
+				}
+			} catch (TopLevelException e) {
+				out.println("<label class='error'>"+e.getStackTraceElements()+"</label>");
+			} 
+			out.println("<br><br>");
+			out.println(ServletUtils.getInstance().getHTMLFooter());
+			out.close();
 	}
 }

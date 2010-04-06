@@ -78,6 +78,8 @@ public class Derbymanager extends DatabaseConfig implements DatabaseAdaptor {
 	}
 
 	
-	
+	public void insertNewPacient(){
+		String SQL = "INSERT INTO JDENTAL.PACIENTES ()VALUES()";
+	}
 
 }

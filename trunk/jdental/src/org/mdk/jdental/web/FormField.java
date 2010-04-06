@@ -24,12 +24,7 @@ public class FormField {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getName() {
-		return errMsg;
-	}
-	public void setName(String name) {
-		this.errMsg = name;
-	}
+	
 	public String getValue() {
 		return value;
 	}
@@ -47,6 +42,12 @@ public class FormField {
 	}
 	public void setLabel(String label) {
 		this.label = label;
+	}
+	public String getErrMsg() {
+		return errMsg;
+	}
+	public void setErrMsg(String errMsg) {
+		this.errMsg = errMsg;
 	}
 	
 	

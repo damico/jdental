@@ -22,9 +22,18 @@ public class GenericUtilities {
 	}
 	
 	public boolean regex(String source, String exp){
-		Pattern pattern = Pattern.compile(exp);
-        Matcher matcher = pattern.matcher(source);
-        return matcher.find();
+		
+		boolean ret = true;
+		if(source!=null && exp!=null){
+			Pattern pattern = Pattern.compile(exp);
+	        Matcher matcher = pattern.matcher(source);
+	        ret = matcher.find();
+		}
+		
+		LoggerManager.getInstance().logAtDebugTime(this.getClass().getName(), "Source: "+source+" Exp: "+exp+" Return: "+ret);
+		
+		
+        return ret;
 	}
 
 }
