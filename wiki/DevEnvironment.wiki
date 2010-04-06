@@ -2,5 +2,6 @@
 
 = Environment =
 
- * Eclipse Galilleo 3.5
- * 
+ * Eclipse Galileo 3.5 http://www.eclipse.org/downloads
+ * Eclipse Subversive - SVN Team Provider 
+  * Look at Help > Install New Software... > select Galileo - http://download.eclipse.org/releases/galileo > Collaboration Tools
