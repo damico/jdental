@@ -1,0 +1,6 @@
+#summary What is needed to develop jDental?
+
+= Environment =
+
+ * Eclipse Galilleo 3.5
+ * 
