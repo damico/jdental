@@ -10,7 +10,7 @@ public interface Constants {
 
 	public static final String RENDER_SERVLET_FILE_PARAM = "file";
 
-	public static final String DEFAULT_CONTENTPKG_PATH = "/opt/rssf/";
+	public static final String DEFAULT_CONTENTPKG_PATH = "/opt/jdental/";
 
 	public static final String APP_VERSION = "0.0.1";
 

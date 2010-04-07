@@ -26,6 +26,7 @@ public class JettyController implements Runnable {
 		handler.addServletWithMapping("org.mdk.jdental.web.servlets.RenderServlet",	"/RenderServlet");
 		handler.addServletWithMapping("org.mdk.jdental.web.servlets.CreateAccount",	"/CreateAccount");
 		handler.addServletWithMapping("org.mdk.jdental.web.servlets.ClientForm",	"/ClientForm");
+		handler.addServletWithMapping("org.mdk.jdental.web.servlets.Teeth",	"/Teeth");
 
 		
 		
