@@ -5,3 +5,23 @@
  * Eclipse Galileo 3.5 http://www.eclipse.org/downloads
  * Eclipse Subversive - SVN Team Provider 
   * Look at Help > Install New Software... > select Galileo - http://download.eclipse.org/releases/galileo > Collaboration Tools
+
+= Workstation Setup: Database =
+
+  * Install PostgreSQL 8.3
+  * Create database, structure tables and import basic data:
+{{{
+  $ adduser jdental
+  $ su postgres
+  $ createuser -s jdental
+  $ psql
+  postgres=# ALTER USER jdental WITH PASSWORD 'mypasswd';
+  postgres=# \q
+  $ su ivela
+  $ createdb jdental
+  $ psql jdental
+  postgres=# \q
+  $ su ivela
+  $ psql -f /opt/jdental/jdental_structure.sql
+  $ psql -f /opt/jdental/jdental_basic_data.sql
+}}}
