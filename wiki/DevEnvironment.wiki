@@ -21,7 +21,7 @@
   $ createdb jdental
   $ psql jdental
   postgres=# \q
-  $ su ivela
+  $ su jdental
   $ psql -f /opt/jdental/jdental_structure.sql
   $ psql -f /opt/jdental/jdental_basic_data.sql
 }}}
