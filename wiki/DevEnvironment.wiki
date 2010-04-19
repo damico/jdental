@@ -25,3 +25,4 @@
   $ psql -f /opt/jdental/jdental_structure.sql
   $ psql -f /opt/jdental/jdental_basic_data.sql
 }}}
+ * Install PGAdmin 3 (apt-get install pgadmin-3)
