@@ -26,3 +26,8 @@
   $ psql -f /opt/jdental/jdental_basic_data.sql
 }}}
  * Install PGAdmin 3 (apt-get install pgadmin-3)
+
+= Workstation Setup: Websphere Application Server Community Edition (WASCE) =
+
+  * Go to [http://jdbc.postgresql.org/download.html] and get JDBC type 4 .jar driver
+  * Save the downloaded jar archive (postgresql-8.3-604.jdbc4.jar) to _/opt/IBM/WebSphere/AppServerCommunityEdition/lib_
