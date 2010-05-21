@@ -3,10 +3,12 @@ package org.mdk.jdental.transactions;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -232,13 +234,73 @@ public class PostgresManager implements DatabaseAdaptor {
 	}
 
 
+	public int getUserIdByLogin(String login) throws TopLevelException {
+		
+		int ret = -1;
+		
+		PreparedStatement ps = null;
+		Connection con = null;
+		ResultSet rs = null;
+		String sql = "SELECT USER_ID FROM \"JDENTAL\".USER_T WHERE USER_LOGIN = ?";
+		
+		try {
+			Class.forName(databaseConfig.getClassfn());
+			
+			con = DriverManager.getConnection(databaseConfig.getDbUrl());
+			ps = con.prepareStatement(sql);
+			ps.setString(1, login);
+			rs = ps.executeQuery();
+			while(rs.next()){
+				ret = rs.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			LoggerManager.getInstance().logAtExceptionTime(this.getClass().getName(), "["+sql+"] "+e.getMessage());
+			throw new TopLevelException(e.getStackTrace());
+		} catch (ClassNotFoundException e) {
+			LoggerManager.getInstance().logAtExceptionTime(this.getClass().getName(), e.getMessage());
+			throw new TopLevelException(e.getStackTrace());
+		} 
+		return ret;
+	}
 
 	@Override
-	public boolean scheduleInsert(Map<String, String> formData, String sql)
-			throws TopLevelException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean scheduleInsert(Map<String, String> formData, String sql,	Timestamp datei, Timestamp datee) throws TopLevelException {
+		
+		PreparedStatement ps = null;
+		Connection con = null;
+		boolean ret = false;
+
+		try {
+			Class.forName(databaseConfig.getClassfn());
+			con = DriverManager.getConnection(databaseConfig.getDbUrl());
+			ps = con.prepareStatement(sql);
+			ps.setString(1, formData.get("event"));
+			ps.setInt(2, getUserIdByLogin(formData.get("login")));
+			ps.setInt(3, Integer.parseInt(formData.get("client")));
+			ps.setTimestamp(4, datei);
+			ps.setTimestamp(5, datee);
+			ps.setString(6, formData.get("details"));
+			ps.executeUpdate();
+			LoggerManager.getInstance().logAtDebugTime(this.getClass().getName(), "Inserting schedule event...");
+			ret = true;
+		} catch (SQLException e) {
+			LoggerManager.getInstance().logAtExceptionTime(this.getClass().getName(), "["+sql+"] "+e.getMessage());
+			e.printStackTrace();
+			throw new TopLevelException(e.getStackTrace());
+		} catch (ClassNotFoundException e) {
+			LoggerManager.getInstance().logAtExceptionTime(this.getClass().getName(), e.getMessage());
+			throw new TopLevelException(e.getStackTrace());
+		} 
+		
+		
+		
+		return ret;
 	}
+
+
+
+	
 
 
 }

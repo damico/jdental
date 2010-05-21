@@ -1,5 +1,6 @@
 package org.mdk.jdental.transactions;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -16,5 +17,5 @@ public interface DatabaseAdaptor {
 	public void genericInsert(Map<String, String> map, ArrayList<FormField> ffArray, String sql) throws TopLevelException;
 	public SelectList genericSearch(Map<String, String> formData, ArrayList<FormField> ffList, String sql, FormType formType) throws TopLevelException;
 	public Map<Integer, String> getClientIDs() throws TopLevelException;
-	public boolean scheduleInsert(Map<String, String> formData, String sql) throws TopLevelException;	
+	public boolean scheduleInsert(Map<String, String> formData, String sql, Timestamp datei, Timestamp datee) throws TopLevelException;
 }

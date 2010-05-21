@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -118,9 +119,15 @@ public class DerbyManager  implements DatabaseAdaptor {
 
 
 
+
+
+
+
+
+
 	@Override
-	public boolean scheduleInsert(Map<String, String> formData, String sql)
-			throws TopLevelException {
+	public boolean scheduleInsert(Map<String, String> formData, String sql,
+			Timestamp datei, Timestamp datee) throws TopLevelException {
 		// TODO Auto-generated method stub
 		return false;
 	}

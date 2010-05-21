@@ -42,4 +42,6 @@ public interface Constants {
 
 	public static final String LOG_FOLDER = "/var/log/jdental/";
 
+	public static final String DEFAULT_DATETIME_FORMAT = "dd/mm/yyyy H:m:s";
+
 }

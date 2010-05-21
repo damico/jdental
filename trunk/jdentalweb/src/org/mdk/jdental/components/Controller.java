@@ -7,10 +7,13 @@ import org.mdk.jdental.dataobjects.SelectList;
 import org.mdk.jdental.exceptions.TopLevelException;
 import org.mdk.jdental.transactions.DatabaseAdaptor;
 import org.mdk.jdental.transactions.TransactionManager;
+import org.mdk.jdental.utils.GenericUtilities;
 import org.mdk.jdental.utils.LoggerManager;
 import org.mdk.jdental.web.FormField;
 import org.mdk.jdental.web.FormType;
 import org.mdk.jdental.web.SessionManager;
+
+import com.sun.jndi.toolkit.url.GenericURLContext;
 
 public class Controller {
 
@@ -77,8 +80,14 @@ public class Controller {
 
 	public boolean scheduleInsert(Map<String, String> formData, ArrayList<FormField> ffList, String sql) {
 		boolean ret = false;
+		GenericUtilities gu = new GenericUtilities();
+		String sdatei = formData.get("i_d")+"/"+formData.get("i_m")+"/"+formData.get("i_y")+" "+formData.get("i_h")+":"+formData.get("i_min")+":00";
+		String sdatee = formData.get("f_d")+"/"+formData.get("f_m")+"/"+formData.get("f_y")+" "+formData.get("f_h")+":"+formData.get("f_min")+":00";
+		
 		try {
-			ret = adaptor.scheduleInsert(formData, sql);
+			java.sql.Timestamp datei = gu.getString2SqlDate(sdatei);
+			java.sql.Timestamp datee = gu.getString2SqlDate(sdatee);
+			ret = adaptor.scheduleInsert(formData, sql, datei, datee);
 		} catch (TopLevelException e) {
 			e.printStackTrace();
 		} 
