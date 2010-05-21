@@ -1,64 +1,76 @@
 package org.mdk.jdental.components;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
 
+import org.mdk.jdental.dataobjects.SelectList;
 import org.mdk.jdental.exceptions.TopLevelException;
-import org.mdk.jdental.transactions.Derbymanager;
-
-import com.sun.syndication.feed.synd.SyndEntryImpl;
-import com.sun.syndication.feed.synd.SyndFeed;
-import com.sun.syndication.io.FeedException;
-import com.sun.syndication.io.SyndFeedInput;
-import com.sun.syndication.io.XmlReader;
+import org.mdk.jdental.transactions.DatabaseAdaptor;
+import org.mdk.jdental.transactions.TransactionManager;
+import org.mdk.jdental.utils.LoggerManager;
+import org.mdk.jdental.web.FormField;
+import org.mdk.jdental.web.FormType;
+import org.mdk.jdental.web.SessionManager;
 
 public class Controller {
 
-	public List<SyndEntryImpl> getFeed() throws IOException, IllegalArgumentException,
-	FeedException {
+	private DatabaseAdaptor adaptor = null;
+	
+	public Controller(){
+		TransactionManager tm = new TransactionManager();
+		this.adaptor = tm.getDbAdaptor();
+	}
 
-		List<SyndEntryImpl> rssEntries = null;
-
-		URL feedUrl = new URL("http://rss.slashdot.org/slashdot/classic");
-
-		SyndFeedInput input = new SyndFeedInput();
-
-		XmlReader xmlr = new XmlReader(feedUrl);
-
-		SyndFeed feed = input.build(xmlr);
-
-		System.out.println(feed);
-
-		rssEntries = feed.getEntries();
+	
+	public boolean openSessionForUser(String login, String passwd) {
+		boolean ret = false;
 		
 		
 		
-		return rssEntries;
+		int type = adaptor.openSessionForUser(login, passwd);
+		if(type > 0){
+			SessionManager sm = new SessionManager();
+			sm.createSession(login, type);
+			ret = true;
+			LoggerManager.getInstance().logAtDebugTime(this.getClass().getName(), "Session opened for: "+login+" Type: "+type);
+		}
+		return ret;
+	}
 
+	public void regUser(Map<String, String> map) {
+		adaptor.regUser(map);	
 	}
 	
-	public SyndEntryImpl getLatestEntry() throws IllegalArgumentException, IOException, FeedException{
-		List<SyndEntryImpl> entries = getFeed();
-		SyndEntryImpl syndEntry = entries.get(0);
-		return syndEntry;
+	public boolean genericInsert(Map<String, String> map, ArrayList<FormField> ffArray, String sql) {
+		boolean ret = false;
+		try {
+			adaptor.genericInsert(map, ffArray, sql);
+			ret = true;
+		} catch (TopLevelException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
-	public void SaveEmotion(int emotion, String uri) throws TopLevelException {
-		Derbymanager.getInstance().saveEmotion(emotion, uri);
+
+	public SelectList genericSearch(Map<String, String> formData, ArrayList<FormField> ffList, String sql, FormType formType) {
+		SelectList ret = null;
+		try {
+			ret = adaptor.genericSearch(formData, ffList, sql, formType);
+		} catch (TopLevelException e) {
+			e.printStackTrace();
+		}
+		return ret;
 	}
 
-	public int getMyFeelingToday(){
-		
-		int tH = 0;
-		int tM = 0;
-		int tS = 0;
-		
-		tH = Derbymanager.getInstance().getTodayFeeling(2);
-		tM = Derbymanager.getInstance().getTodayFeeling(1);
-		tS = Derbymanager.getInstance().getTodayFeeling(0);
-		
-		return 0;
+
+	public Map<Integer, String> getClientIDs() {
+		Map<Integer, String>  clientList = null;
+		try {
+			clientList = adaptor.getClientIDs();
+		} catch (TopLevelException e) {
+			e.printStackTrace();
+		} 
+		return clientList;
 	}
-	
 }
