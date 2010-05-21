@@ -4,8 +4,8 @@
 
  * Eclipse Galileo 3.5 http://www.eclipse.org/downloads
  * Eclipse Subversive - SVN Team Provider 
-  * Look at Help > Install New Software... > select Galileo - http://download.eclipse.org/releases/galileo > Collaboration Tools
-
+  * Look at Help > Install New Software... > select Galileo - [http://download.eclipse.org/releases/galileo] > Collaboration Tools
+ * Eclipse WASCE 2.1 plugin [http://download.boulder.ibm.com/ibmdl/pub/software/websphere/wasce/updates/]
 = Workstation Setup: Database =
 
   * Install PostgreSQL 8.3 (apt-get install postgresql-8.3)
