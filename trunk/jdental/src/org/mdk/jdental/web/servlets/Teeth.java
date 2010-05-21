@@ -18,19 +18,21 @@ public class Teeth extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		out.println(ServletUtils.getInstance().getHTMLHeader(Constants.APP_NAME));
-		out.println("<table width='210' border='0' cellpadding='0' cellspacing='0'>" +
-					"<tr valign='top'><td><img src='RenderServlet?file=n11.png' alt='11'></td><td>" +
-					"<form>" +
-					"<table width='105' border='0' BACKGROUND='RenderServlet?file=cubic.png'>" +
-					"<tr width='105'><td width='33'></td><td width='33'><input type='checkbox' name='a'></td><td width='33'></td></tr>" +
-					"<tr width='105'><td width='33'><input type='checkbox' name='a'></td><td width='33'><input type='checkbox' name='a'></td><td width='33'><input type='checkbox' name='a'></td></tr>" +
-					"<tr width='105'><td width='33'></td><td width='33'><input type='checkbox' name='a'></td><td width='33'></td></tr>" +
-					"</table>" +
-					"</form>" +
-					"</td><td>" +
-					"<img src='RenderServlet?file=11.png' alt='11'>" +
-					"</td></tr>" +
-					"</table>");
+		out.println("<div align='center'><img src='RenderServlet?file=periograma.png' alt='Periograma'></div>");
+		out.println("<hr>");
+		String index = "";
+		for(int i=1; i<5; i++){
+			
+			out.println("<table width='100%'><tr>");
+			for(int j=1; j<9; j++){
+				index = String.valueOf(i) + String.valueOf(j);
+				out.println("<td>"+ServletUtils.getInstance().getTooth(index)+"</td>");
+			}
+			out.println("</tr></table>");
+			
+		}
+		
+		
 		
 		out.println(ServletUtils.getInstance().getHTMLFooter());
 		out.close();

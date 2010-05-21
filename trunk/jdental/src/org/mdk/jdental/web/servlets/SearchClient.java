@@ -9,37 +9,49 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.mdk.jdental.components.Controller;
+import org.mdk.jdental.dataobjects.SelectList;
 import org.mdk.jdental.exceptions.TopLevelException;
 import org.mdk.jdental.utils.Constants;
-import org.mdk.jdental.utils.LoggerManager;
+import org.mdk.jdental.web.ClientFormImpl;
 import org.mdk.jdental.web.FormGenerator;
+import org.mdk.jdental.web.FormType;
 import org.mdk.jdental.web.FormValidator;
-import org.mdk.jdental.web.RegFormImpl;
+import org.mdk.jdental.web.SearchClientFormImpl;
 
-public class CreateAccount extends HttpServlet {
+/**
+ * Servlet implementation class SearchClient
+ */
+public class SearchClient extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SearchClient() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
-	private static final long serialVersionUID = 8580722875973702484L;
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
-		
-		
-		FormGenerator fg = new FormGenerator("RegFormImpl", "CreateAccount", new RegFormImpl());
+		FormGenerator fg = new FormGenerator("SearchClientFormImpl", "SearchClient", new SearchClientFormImpl());
 		PrintWriter out = response.getWriter();
 		out.println(ServletUtils.getInstance().getHTMLHeader(Constants.APP_NAME));
+		out.println(ServletUtils.getInstance().getUserMenu(request));
 		out.println(fg.displayForm());
 		out.println(ServletUtils.getInstance().getHTMLFooter());
 		out.close();
 	}
-	
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Controller control = new Controller();
-		
 		PrintWriter out = response.getWriter();
 		out.println(ServletUtils.getInstance().getHTMLHeader(Constants.APP_NAME));
-
+		out.println(ServletUtils.getInstance().getUserMenu(request));
 		
 		
 		out.println("<br><br>");
@@ -49,18 +61,18 @@ public class CreateAccount extends HttpServlet {
 				
 				if(fv.getError()){
 					out.println(fv.getErrorMsg());
-				}else if(request.getParameter("Senha").equals(request.getParameter("Repita+a+Senha"))){
-					out.println(fv.getSuccessMsg());
-					control.regUser(fv.getFormData());
 				}else{
-					out.println("<label class='error'>As senhas não conferem.</label>");
+					FormType ft = new ClientFormImpl();
+					Controller control =  new Controller();
+					SelectList sl = control.genericSearch(fv.getFormData(),fv.getFfList(),fv.getSql(), ft);
+					out.println(ServletUtils.getInstance().sl2HtmlTable(sl));
 				}
 			} catch (TopLevelException e) {
 				out.println("<label class='error'>"+e.getStackTraceElements()+"</label>");
-				LoggerManager.getInstance().logAtExceptionTime(this.getClass().getName(), e.getStackTraceElements());
 			} 
 			out.println("<br><br>");
 			out.println(ServletUtils.getInstance().getHTMLFooter());
 			out.close();
 	}
+
 }

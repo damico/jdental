@@ -2,13 +2,13 @@ package org.mdk.jdental.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mdk.jdental.components.Controller;
 import org.mdk.jdental.exceptions.TopLevelException;
 import org.mdk.jdental.utils.Constants;
 import org.mdk.jdental.web.ClientFormImpl;
@@ -49,6 +49,9 @@ public class ClientForm extends HttpServlet {
 					out.println(fv.getErrorMsg());
 				}else{
 					out.println(fv.getSuccessMsg());
+					Controller control =  new Controller();
+					boolean transaction = control.genericInsert(fv.getFormData(),fv.getFfList(),fv.getSql());
+					if(!transaction) out.println("DB error");
 				}
 			} catch (TopLevelException e) {
 				out.println("<label class='error'>"+e.getStackTraceElements()+"</label>");
