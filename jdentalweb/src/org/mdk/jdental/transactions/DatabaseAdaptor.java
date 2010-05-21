@@ -15,5 +15,6 @@ public interface DatabaseAdaptor {
 	public void regUser(Map<String, String> map);
 	public void genericInsert(Map<String, String> map, ArrayList<FormField> ffArray, String sql) throws TopLevelException;
 	public SelectList genericSearch(Map<String, String> formData, ArrayList<FormField> ffList, String sql, FormType formType) throws TopLevelException;
-	public Map<Integer, String> getClientIDs() throws TopLevelException;	
+	public Map<Integer, String> getClientIDs() throws TopLevelException;
+	public boolean scheduleInsert(Map<String, String> formData, String sql) throws TopLevelException;	
 }

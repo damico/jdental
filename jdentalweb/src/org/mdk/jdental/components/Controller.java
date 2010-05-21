@@ -73,4 +73,15 @@ public class Controller {
 		} 
 		return clientList;
 	}
+
+
+	public boolean scheduleInsert(Map<String, String> formData, ArrayList<FormField> ffList, String sql) {
+		boolean ret = false;
+		try {
+			ret = adaptor.scheduleInsert(formData, sql);
+		} catch (TopLevelException e) {
+			e.printStackTrace();
+		} 
+		return ret;
+	}
 }
