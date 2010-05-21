@@ -35,6 +35,7 @@ public class TopLevelException extends Exception {
 	
 	public TopLevelException(StackTraceElement[] stackTraceElements, String rootMessage) {
 		super(rootMessage);
+		message = rootMessage;
 		this.stackTraceElements = stackTraceElements;
 		
 	}
@@ -45,6 +46,7 @@ public class TopLevelException extends Exception {
 		if(stackTraceElements == null){
 			sb.append(message);
 		}else{
+			sb.append(message);
 			for(int i = 0; i < stackTraceElements.length; i++){
 				sb.append(stackTraceElements[i].getFileName()+"("+stackTraceElements[i].getLineNumber()+")\n");
 			}
