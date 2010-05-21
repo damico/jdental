@@ -14,7 +14,6 @@ public class TransactionManager {
 			String dbname = ManageProperties.getInstance().read(Constants.DB_NAME);
 			String dbuser = ManageProperties.getInstance().read(Constants.DB_USER);
 			String dbpasswd = ManageProperties.getInstance().read(Constants.DB_PASSWD);
-			
 			DatabaseConfig dConfig = new DatabaseConfig(classfn, dbhost, dbport, dbname, dbuser, dbpasswd);
 			ret = new PostgresManager(dConfig);
 		}

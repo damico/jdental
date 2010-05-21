@@ -232,4 +232,13 @@ public class PostgresManager implements DatabaseAdaptor {
 	}
 
 
+
+	@Override
+	public boolean scheduleInsert(Map<String, String> formData, String sql)
+			throws TopLevelException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
 }

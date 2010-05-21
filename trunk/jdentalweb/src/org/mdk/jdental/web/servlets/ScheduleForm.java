@@ -95,8 +95,8 @@ public class ScheduleForm extends HttpServlet {
 				}else{
 					out.println(fv.getSuccessMsg());
 					Controller control =  new Controller();
-					//boolean transaction = control.genericInsert(fv.getFormData(),fv.getFfList(),fv.getSql());
-					//if(!transaction) out.println("DB error");
+					boolean transaction = control.scheduleInsert(fv.getFormData(),fv.getFfList(),fv.getSql());
+					if(!transaction) out.println("DB error");
 				}
 			} catch (TopLevelException e) {
 				out.println("<label class='error'>"+e.getStackTraceElements()+"</label>");
