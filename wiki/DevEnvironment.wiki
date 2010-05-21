@@ -29,5 +29,6 @@
 
 = Workstation Setup: Websphere Application Server Community Edition (WASCE) =
 
+  * Download and install WASCE [http://www.ibm.com/developerworks/downloads/ws/wasce/]
   * Go to [http://jdbc.postgresql.org/download.html] and get JDBC type 4 .jar driver
   * Save the downloaded jar archive (postgresql-8.3-604.jdbc4.jar) to _/opt/IBM/WebSphere/AppServerCommunityEdition/lib_ and to _workspace/jdentalweb/WebContent/WEB-INF/lib/_
