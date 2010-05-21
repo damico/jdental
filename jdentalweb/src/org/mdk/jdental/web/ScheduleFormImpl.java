@@ -54,7 +54,7 @@ public class ScheduleFormImpl implements FormType {
 
 	@Override
 	public String getSQL() {
-		return "INSERT INTO \"JDENTAL\"."+getTableName()+" (CLIENT_NAME,CLIENT_ADDR,CLIENT_PHONE,CLIENT_MOBILE,CLIENT_EMAIL,CLIENT_CITY,CLIENT_STATE)VALUES(?,?,?,?,?,?,?)";
+		return "INSERT INTO \"JDENTAL\"."+getTableName()+" (SCHEDULE_EVENT,  SCHEDULE_USER_ID , SCHEDULE_CLIENT_ID , SCHEDULE_INITIAL_DATE , SCHEDULE_END_DATE , SCHEDULE_DETAILS)VALUES(?,?,?,?,?,?)";
 	}
 
 }

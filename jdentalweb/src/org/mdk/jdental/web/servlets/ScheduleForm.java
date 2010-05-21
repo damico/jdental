@@ -2,8 +2,10 @@ package org.mdk.jdental.web.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,6 +82,10 @@ public class ScheduleForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Cookie[] cookies = request.getCookies();
+		Cookie login = cookies[0];
+		
 		PrintWriter out = response.getWriter();
 		out.println(ServletUtils.getInstance().getHTMLHeader(Constants.APP_NAME));
 		out.println(ServletUtils.getInstance().getUserMenu(request));
@@ -95,7 +101,9 @@ public class ScheduleForm extends HttpServlet {
 				}else{
 					out.println(fv.getSuccessMsg());
 					Controller control =  new Controller();
-					boolean transaction = control.scheduleInsert(fv.getFormData(),fv.getFfList(),fv.getSql());
+					Map<String, String> formData = fv.getFormData();
+					formData.put("login", login.getValue());
+					boolean transaction = control.scheduleInsert(formData,fv.getFfList(),fv.getSql());
 					if(!transaction) out.println("DB error");
 				}
 			} catch (TopLevelException e) {
