@@ -17,7 +17,7 @@
   $ psql
   postgres=# ALTER USER jdental WITH PASSWORD 'mypasswd';
   postgres=# \q
-  $ su ivela
+  $ su jdental
   $ createdb jdental
   $ psql jdental
   postgres=# \q
