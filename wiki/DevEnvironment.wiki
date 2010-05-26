@@ -6,6 +6,10 @@
  * Eclipse Subversive - SVN Team Provider 
   * Look at Help > Install New Software... > select Galileo - [http://download.eclipse.org/releases/galileo] > Collaboration Tools
  * Eclipse WASCE 2.1 plugin [http://download.boulder.ibm.com/ibmdl/pub/software/websphere/wasce/updates/]
+ * We recommend to use one of these options:
+   * wasce_ibm60sdk_setup-2.1.1.4-ia32linux.tar.bz2
+   * wasce_ibm60sdk_setup-2.1.1.4-x86_64linux.tar.bz2
+
 = Workstation Setup: Database =
 
   * Install PostgreSQL 8.3 (apt-get install postgresql-8.3)
