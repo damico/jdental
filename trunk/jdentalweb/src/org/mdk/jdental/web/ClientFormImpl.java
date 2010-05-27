@@ -17,9 +17,11 @@ public class ClientFormImpl implements FormType {
 		ffList.add(new FormField("Email", "text", null, "Preenchimento incorreto!", "[a-zA-Z]{3,}+", "String"));
 		ffList.add(new FormField("Cidade", "text", null, "Preenchimento incorreto!", "[a-zA-Z]{3,}+", "String"));
 		ffList.add(new FormField("Estado", "text", null, "Preenchimento incorreto!", "[a-zA-Z]{2,}+", "String"));
+		ffList.add(new FormField("CPF", "text", null, "Preenchimento incorreto!", "[0-9]{11,}+", "String"));
 		ffList.add(new FormField(null, "Submit", "Cadastrar", null, null));
 		ffList.add(new FormField("mode", "hidden", "insert", null, null));
 		ffList.add(new FormField("object", "hidden", this.getClass().getName(), null, null));
+
 		
 		return ffList;
 	}
@@ -41,6 +43,6 @@ public class ClientFormImpl implements FormType {
 
 	@Override
 	public String getSQL() {
-		return "INSERT INTO \"JDENTAL\"."+getTableName()+" (CLIENT_NAME,CLIENT_ADDR,CLIENT_PHONE,CLIENT_MOBILE,CLIENT_EMAIL,CLIENT_CITY,CLIENT_STATE)VALUES(?,?,?,?,?,?,?)";
+		return "INSERT INTO \"JDENTAL\"."+getTableName()+" (CLIENT_NAME,CLIENT_ADDR,CLIENT_PHONE,CLIENT_MOBILE,CLIENT_EMAIL,CLIENT_CITY,CLIENT_STATE, CLIENT_CPF)VALUES(?,?,?,?,?,?,?,?)";
 	}
 }
