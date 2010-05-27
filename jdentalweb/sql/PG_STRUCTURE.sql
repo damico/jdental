@@ -11,16 +11,25 @@ USER_APPVD INT,
 USER_TYPE INT,
 USER_REG_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
 
-create table "JDENTAL".CLIENT_T (
-CLIENT_ID SERIAL NOT NULL PRIMARY KEY, 
-CLIENT_NAME VARCHAR(255) not null unique,
-CLIENT_EMAIL VARCHAR(255) not null unique,
-CLIENT_ADDR VARCHAR(255) not null ,
-CLIENT_PHONE VARCHAR(255) not null ,
-CLIENT_MOBILE VARCHAR(255) not null ,
-CLIENT_CITY VARCHAR(255) not null ,
-CLIENT_STATE VARCHAR(255) not null ,
-CLIENT_TIMESTAMP TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE "JDENTAL".client_t
+(
+  client_id integer NOT NULL DEFAULT nextval('"JDENTAL".client_t_client_id_seq'::regclass),
+  client_name character varying(255) NOT NULL,
+  client_email character varying(255) NOT NULL,
+  client_addr character varying(255) NOT NULL,
+  client_phone character varying(255) NOT NULL,
+  client_mobile character varying(255) NOT NULL,
+  client_city character varying(255) NOT NULL,
+  client_state character varying(255) NOT NULL,
+  client_timestamp timestamp without time zone NOT NULL DEFAULT now(),
+  client_cpf character(255),
+  CONSTRAINT client_t_pkey PRIMARY KEY (client_id),
+  CONSTRAINT client_t_client_email_key UNIQUE (client_email),
+  CONSTRAINT client_t_client_name_key UNIQUE (client_name)
+)
+WITH (OIDS=FALSE);
+ALTER TABLE "JDENTAL".client_t OWNER TO jdental;
+
 
 create table "JDENTAL".SCHEDULE_T (
 SCHEDULE_ID 			SERIAL 			NOT NULL 	PRIMARY KEY, 
@@ -31,5 +40,6 @@ SCHEDULE_INITIAL_DATE 	TIMESTAMP		NOT NULL,
 SCHEDULE_END_DATE 		TIMESTAMP		NOT NULL,
 SCHEDULE_DETAILS 		TEXT		 	NOT NULL,
 SCHEDULE_TIMESTAMP 		TIMESTAMP 		NOT NULL	DEFAULT CURRENT_TIMESTAMP);
+
 
 
