@@ -34,6 +34,6 @@
 = Workstation Setup: Websphere Application Server Community Edition (WASCE) =
 
   * Download and install WASCE [http://www.ibm.com/developerworks/downloads/ws/wasce/]
-    * `<font color=red>` *IMPORTANT:* If you are using Debian Squeeze (Kernel 2.6.32) you may face a problem like: _java.io.IOException: Cannot bind to URL [rmi://0.0.0.0:1099/JMXConnector]_ or _Listen failed on port: 1099; nested exception is: java.net.SocketException: Invalid argument_ `</font>`
+    * *IMPORTANT: If you are using Debian Squeeze (Kernel 2.6.32) you may face a problem like: _java.io.IOException: Cannot bind to URL [rmi://0.0.0.0:1099/JMXConnector]_ or _Listen failed on port: 1099; nested exception is: java.net.SocketException: Invalid argument_*
   * Go to [http://jdbc.postgresql.org/download.html] and get JDBC type 4 .jar driver
   * Save the downloaded jar archive (postgresql-8.3-604.jdbc4.jar) to _/opt/IBM/WebSphere/AppServerCommunityEdition/lib_ and to _workspace/jdentalweb/WebContent/WEB-INF/lib/_
