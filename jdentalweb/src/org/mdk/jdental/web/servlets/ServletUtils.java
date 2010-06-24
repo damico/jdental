@@ -13,10 +13,10 @@ import java.util.Map.Entry;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
-import org.mdk.jdental.components.Controller;
 import org.mdk.jdental.dataobjects.SelectList;
 import org.mdk.jdental.utils.Constants;
 import org.mdk.jdental.web.SessionManager;
+import org.mdk.netterklinik.components.Controller;
 
 public class ServletUtils {
 	private static ServletUtils INSTANCE = null;
