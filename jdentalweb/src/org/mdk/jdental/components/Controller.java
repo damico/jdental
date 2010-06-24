@@ -28,15 +28,25 @@ public class Controller {
 	public boolean openSessionForUser(String login, String passwd) {
 		boolean ret = false;
 		
+		int type = -1;
+		
+		try {
+			type = adaptor.openSessionForUser(login, passwd);
+		} catch (Exception e){
+			LoggerManager.getInstance().logAtExceptionTime(this.getClass().getName(), "Problems with Database Connection [0002]");
+		}
 		
 		
-		int type = adaptor.openSessionForUser(login, passwd);
 		if(type > 0){
 			SessionManager sm = new SessionManager();
 			sm.createSession(login, type);
 			ret = true;
 			LoggerManager.getInstance().logAtDebugTime(this.getClass().getName(), "Session opened for: "+login+" Type: "+type);
 		}
+		
+		
+		
+		
 		return ret;
 	}
 
