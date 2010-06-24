@@ -3,7 +3,6 @@ package org.mdk.jdental.transactions;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +31,7 @@ public class PostgresManager implements DatabaseAdaptor {
 		PreparedStatement ps = null;
 		Connection con = null;
 		ResultSet rs = null;
-		int ret = 0;
+		int ret = -1;
 		try {
 			Class.forName(databaseConfig.getClassfn());
 			con = DriverManager.getConnection(databaseConfig.getDbUrl());
