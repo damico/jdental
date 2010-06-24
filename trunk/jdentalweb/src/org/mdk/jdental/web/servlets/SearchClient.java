@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.mdk.jdental.components.Controller;
 import org.mdk.jdental.dataobjects.SelectList;
 import org.mdk.jdental.exceptions.TopLevelException;
 import org.mdk.jdental.utils.Constants;
@@ -17,6 +16,7 @@ import org.mdk.jdental.web.FormGenerator;
 import org.mdk.jdental.web.FormType;
 import org.mdk.jdental.web.FormValidator;
 import org.mdk.jdental.web.SearchClientFormImpl;
+import org.mdk.netterklinik.components.Controller;
 
 /**
  * Servlet implementation class SearchClient

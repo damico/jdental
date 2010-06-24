@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.mdk.jdental.components.Controller;
 import org.mdk.jdental.utils.Constants;
 import org.mdk.jdental.utils.GenericUtilities;
+import org.mdk.netterklinik.components.Controller;
 
 /**
  * Servlet implementation class Home
